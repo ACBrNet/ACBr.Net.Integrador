@@ -159,20 +159,30 @@ namespace ACBr.Net.Integrador
             NomeComponente = VFPName;
             NomeMetodo = "EnviarPagamento";
 
-            Parametros.Clear();
-            Parametros.AddParametro("chaveAcessoValidador", Configuracoes.ChaveAcessoValidador);
-            Parametros.AddParametro("ChaveRequisicao", chaveRequisicao);
-            Parametros.AddParametro("Estabelecimento", estabelecimento);
-            Parametros.AddParametro("SerialPOS", serialPOS);
-            Parametros.AddParametro("Cnpj", cnpj);
-            Parametros.AddParametro("IcmsBase", $"{icmsBase:0.00}".Replace('.', ','));
-            Parametros.AddParametro("ValorTotalVenda", $"{valorTotalVenda:0.00}".Replace('.', ','));
-            Parametros.AddParametro("HabilitarMultiplosPagamentos", habilitarMultiplosPagamentos ? "true" : "false");
-            Parametros.AddParametro("HabilitarControleAntiFraude", habilitarControleAntiFraude ? "true" : "false");
-            Parametros.AddParametro("CodigoMoeda", codigoMoeda);
-            Parametros.AddParametro("OrigemPagamento", origemPagamento);
-            Parametros.AddParametro("EmitirCupomNFCE", emitirCupomNFCE ? "true" : "false");
-            return Enviar();
+            GerarNumeroSessao();
+
+            var envio = NovoEnvio();
+            var parametros = envio.Componente.Metodo.Parametros;
+            parametros.AddParametro("ChaveRequisicao", chaveRequisicao);
+            parametros.AddParametro("Estabelecimento", estabelecimento);
+            parametros.AddParametro("SerialPOS", serialPOS);
+            parametros.AddParametro("Cnpj", cnpj);
+            parametros.AddParametro("IcmsBase", $"{icmsBase:0.00}".Replace('.', ','));
+            parametros.AddParametro("ValorTotalVenda", $"{valorTotalVenda:0.00}".Replace('.', ','));
+            parametros.AddParametro("HabilitarMultiplosPagamentos", habilitarMultiplosPagamentos ? "true" : "false");
+            parametros.AddParametro("HabilitarControleAntiFraude", habilitarControleAntiFraude ? "true" : "false");
+            parametros.AddParametro("CodigoMoeda", codigoMoeda);
+            parametros.AddParametro("OrigemPagamento", origemPagamento);
+            parametros.AddParametro("EmitirCupomNFCE", emitirCupomNFCE ? "true" : "false");
+
+            envio.Componente.Metodo.Construtor = new IntegradorConstrutor();
+            envio.Componente.Metodo.Construtor.Parametros.AddParametro("chaveAcessoValidador", Configuracoes.ChaveAcessoValidador);
+
+            EnviarComando(envio);
+
+            AguardarResposta(NumeroSessao.ToString());
+
+            return IntegradorRetorno.Load(UltimaResposta);
         }
 
         /// <summary>
@@ -186,12 +196,19 @@ namespace ACBr.Net.Integrador
             NomeComponente = VFPName;
             NomeMetodo = "VerificarStatusValidador";
 
-            Parametros.Clear();
-            Parametros.AddParametro("chaveAcessoValidador", Configuracoes.ChaveAcessoValidador);
-            Parametros.AddParametro("idFila", idFila.ToString());
-            Parametros.AddParametro("cnpj", cnpj);
+            var envio = NovoEnvio();
+            var parametros = envio.Componente.Metodo.Parametros;
+            parametros.AddParametro("idFila", idFila.ToString());
+            parametros.AddParametro("cnpj", cnpj);
 
-            return Enviar();
+            envio.Componente.Metodo.Construtor = new IntegradorConstrutor();
+            envio.Componente.Metodo.Construtor.Parametros.AddParametro("chaveAcessoValidador", Configuracoes.ChaveAcessoValidador);
+
+            EnviarComando(envio);
+
+            AguardarResposta(NumeroSessao.ToString());
+
+            return IntegradorRetorno.Load(UltimaResposta);
         }
 
         /// <summary>
@@ -215,21 +232,28 @@ namespace ACBr.Net.Integrador
             NomeComponente = VFPName;
             NomeMetodo = "EnviarStatusPagamento";
 
-            Parametros.Clear();
-            Parametros.AddParametro("chaveAcessoValidador", Configuracoes.ChaveAcessoValidador);
-            Parametros.AddParametro("CodigoAutorizacao", codigoAutorizacao);
-            Parametros.AddParametro("Bin", bin);
-            Parametros.AddParametro("DonoCartao", donoCartao);
-            Parametros.AddParametro("DataExpiracao", dataExpiracao);
-            Parametros.AddParametro("InstituicaoFinanceira", instituicaoFinanceira);
-            Parametros.AddParametro("Parcelas", parcelas.ToString());
-            Parametros.AddParametro("CodigoPagamento", codigoPagamento);
-            Parametros.AddParametro("ValorPagamento", $"{valorPagamento:0.00}".Replace('.', ','));
-            Parametros.AddParametro("IdFila", idFila.ToString());
-            Parametros.AddParametro("Tipo", tipo);
-            Parametros.AddParametro("UltimosQuatroDigitos", ultimosQuatroDigitos.ToString());
+            var envio = NovoEnvio();
+            var parametros = envio.Componente.Metodo.Parametros;
+            parametros.AddParametro("CodigoAutorizacao", codigoAutorizacao);
+            parametros.AddParametro("Bin", bin);
+            parametros.AddParametro("DonoCartao", donoCartao);
+            parametros.AddParametro("DataExpiracao", dataExpiracao);
+            parametros.AddParametro("InstituicaoFinanceira", instituicaoFinanceira);
+            parametros.AddParametro("Parcelas", parcelas.ToString());
+            parametros.AddParametro("CodigoPagamento", codigoPagamento);
+            parametros.AddParametro("ValorPagamento", $"{valorPagamento:0.00}".Replace('.', ','));
+            parametros.AddParametro("IdFila", idFila.ToString());
+            parametros.AddParametro("Tipo", tipo);
+            parametros.AddParametro("UltimosQuatroDigitos", ultimosQuatroDigitos.ToString());
 
-            return Enviar();
+            envio.Componente.Metodo.Construtor = new IntegradorConstrutor();
+            envio.Componente.Metodo.Construtor.Parametros.AddParametro("chaveAcessoValidador", Configuracoes.ChaveAcessoValidador);
+
+            EnviarComando(envio);
+
+            AguardarResposta(NumeroSessao.ToString());
+
+            return IntegradorRetorno.Load(UltimaResposta);
         }
 
         /// <summary>
@@ -249,21 +273,28 @@ namespace ACBr.Net.Integrador
             string numeroAprovacao, string bandeira, string adquirinte, string cnpj, string impressaofiscal, string numeroDocumento)
         {
             NomeComponente = VFPName;
-            NomeMetodo = "EnviarStatusPagamento";
+            NomeMetodo = "RespostaFiscal";
 
-            Parametros.Clear();
-            Parametros.AddParametro("chaveAcessoValidador", Configuracoes.ChaveAcessoValidador);
-            Parametros.AddParametro("idFila", idFila.ToString());
-            Parametros.AddParametro("ChaveAcesso", chaveAcesso);
-            Parametros.AddParametro("Nsu", nsu);
-            Parametros.AddParametro("NumerodeAprovacao", numeroAprovacao);
-            Parametros.AddParametro("Bandeira", bandeira);
-            Parametros.AddParametro("Adquirente", adquirinte);
-            Parametros.AddParametro("Cnpj", cnpj);
-            Parametros.AddParametro("ImpressaoFiscal", impressaofiscal);
-            Parametros.AddParametro("NumeroDocumento", numeroDocumento);
+            var envio = NovoEnvio();
+            var parametros = envio.Componente.Metodo.Parametros;
+            parametros.AddParametro("idFila", idFila.ToString());
+            parametros.AddParametro("ChaveAcesso", chaveAcesso);
+            parametros.AddParametro("Nsu", nsu);
+            parametros.AddParametro("NumerodeAprovacao", numeroAprovacao);
+            parametros.AddParametro("Bandeira", bandeira);
+            parametros.AddParametro("Adquirente", adquirinte);
+            parametros.AddParametro("Cnpj", cnpj);
+            parametros.AddParametro("ImpressaoFiscal", impressaofiscal);
+            parametros.AddParametro("NumeroDocumento", numeroDocumento);
 
-            return Enviar();
+            envio.Componente.Metodo.Construtor = new IntegradorConstrutor();
+            envio.Componente.Metodo.Construtor.Parametros.AddParametro("chaveAcessoValidador", Configuracoes.ChaveAcessoValidador);
+
+            EnviarComando(envio);
+
+            AguardarResposta(NumeroSessao.ToString());
+
+            return IntegradorRetorno.Load(UltimaResposta);
         }
 
         /// <summary>
@@ -313,7 +344,7 @@ namespace ACBr.Net.Integrador
         {
             var envio = new IntegradorEnvio
             {
-                Identificador = { Valor = "" },
+                Identificador = { Valor = NumeroSessao.ToString() },
                 Componente =
                 {
                     Nome = NomeComponente,
