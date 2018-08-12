@@ -30,7 +30,7 @@
 // ***********************************************************************
 
 using ACBr.Net.DFe.Core.Attributes;
-using ACBr.Net.DFe.Core.Common;
+using ACBr.Net.DFe.Core.Document;
 
 namespace ACBr.Net.Integrador
 {
