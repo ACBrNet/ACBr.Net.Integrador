@@ -23,11 +23,15 @@
   <Import Project="..\ACBr.Net.Integrador.Shared\ACBr.Net.Integrador.Shared.projitems" Label="Shared" />
 
   <ItemGroup>
-    <Compile Include="..\Shared\ACBr.Net.Integrador.AssemblyInfo.cs" Link="ACBr.Net.Integrador.AssemblyInfo.cs" />
+    <Compile Include="..\Shared\ACBr.Net.Integrador.AssemblyInfo.cs" Link="Properties\ACBr.Net.Integrador.AssemblyInfo.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="ACBr.Net.DFe.Core" Version="1.2.3.1" />
+    <PackageReference Include="ACBr.Net.DFe.Core" Version="1.2.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
 
 </Project>
