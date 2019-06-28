@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
     <metadata>
         <id>ACBr.Net.Integrador</id>
-        <version>1.0.3.0</version>
+        <version>1.1.0.0</version>
         <title>ACBr.Net.Integrador</title>
         <authors>Grupo ACBr.Net</authors>
         <owners>Grupo ACBr.Net</owners>
@@ -19,7 +19,6 @@
 				<dependency id="ACBr.Net.DFe.Core" version="1.2.4.1" />
 			</group>
 			<group targetFramework=".NETStandard2.0">
-                <dependency id="NETStandard.Library" version="2.0.1" exclude="Build,Analyzers" />
                 <dependency id="ACBr.Net.Core" version="1.2.3.3" exclude="Build,Analyzers" />
                 <dependency id="ACBr.Net.DFe.Core" version="1.2.4.1" exclude="Build,Analyzers" />
             </group>

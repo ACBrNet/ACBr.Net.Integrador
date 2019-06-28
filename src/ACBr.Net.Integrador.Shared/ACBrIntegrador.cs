@@ -324,24 +324,14 @@ namespace ACBr.Net.Integrador
             return resposta;
         }
 
-        /// <summary>
-        /// Gera um novo número de sessão.
-        /// </summary>
-        public void GerarNumeroSessao()
-        {
-            NumeroSessao = StaticRandom.Next(1, 999999);
-
-            var e = new NumeroSessaoEventArgs(NumeroSessao);
-            OnGetNumeroSessao.Raise(this, e);
-            NumeroSessao = e.Sessao;
-        }
-
         #endregion Public
 
         #region Private
 
         private IntegradorEnvio NovoEnvio()
         {
+            GerarNumeroSessao();
+
             var envio = new IntegradorEnvio
             {
                 Identificador = { Valor = NumeroSessao.ToString() },
@@ -353,6 +343,15 @@ namespace ACBr.Net.Integrador
             };
 
             return envio;
+        }
+
+        private void GerarNumeroSessao()
+        {
+            NumeroSessao = StaticRandom.Next(1, 999999);
+
+            var e = new NumeroSessaoEventArgs(NumeroSessao);
+            OnGetNumeroSessao.Raise(this, e);
+            NumeroSessao = e.Sessao;
         }
 
         private void EnviarComando(IntegradorEnvio envio)
