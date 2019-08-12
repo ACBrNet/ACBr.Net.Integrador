@@ -313,6 +313,8 @@ namespace ACBr.Net.Integrador
                 GerarNumeroSessao();
                 Parametros.InsertParametro(0, "numeroSessao", NumeroSessao.ToString());
             }
+            
+            envio.Identificador = { Valor = NumeroSessao.ToString() },
 
             envio.Componente.Metodo.Parametros.AddRange(Parametros);
 
@@ -330,11 +332,11 @@ namespace ACBr.Net.Integrador
 
         private IntegradorEnvio NovoEnvio()
         {
-            GerarNumeroSessao();
+            //GerarNumeroSessao();
 
             var envio = new IntegradorEnvio
             {
-                Identificador = { Valor = NumeroSessao.ToString() },
+                //Identificador = { Valor = NumeroSessao.ToString() },
                 Componente =
                 {
                     Nome = NomeComponente,
