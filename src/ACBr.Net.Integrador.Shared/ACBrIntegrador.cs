@@ -332,11 +332,11 @@ namespace ACBr.Net.Integrador
 
         private IntegradorEnvio NovoEnvio()
         {
-            //GerarNumeroSessao();
+            GerarNumeroSessao();
 
             var envio = new IntegradorEnvio
             {
-                //Identificador = { Valor = NumeroSessao.ToString() },
+                Identificador = { Valor = NumeroSessao.ToString() },
                 Componente =
                 {
                     Nome = NomeComponente,
