@@ -314,7 +314,7 @@ namespace ACBr.Net.Integrador
                 Parametros.InsertParametro(0, "numeroSessao", NumeroSessao.ToString());
             }
             
-            envio.Identificador = { Valor = NumeroSessao.ToString() },
+            envio.Identificador.Valor = NumeroSessao.ToString();
 
             envio.Componente.Metodo.Parametros.AddRange(Parametros);
 
