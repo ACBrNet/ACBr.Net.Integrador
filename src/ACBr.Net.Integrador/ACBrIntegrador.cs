@@ -34,13 +34,14 @@ using System.ComponentModel;
 using System.IO;
 using System.Threading;
 using ACBr.Net.Core;
-using ACBr.Net.Core.Exceptions;
 using ACBr.Net.Core.Extensions;
 using ACBr.Net.Core.Logging;
 using ACBr.Net.Integrador.Events;
 
 #if !NETSTANDARD2_0
+
 using System.Drawing;
+
 #endif
 
 namespace ACBr.Net.Integrador
@@ -52,6 +53,7 @@ namespace ACBr.Net.Integrador
     /// <seealso cref="T:ACBr.Net.Core.ACBrComponent" />
     /// <seealso cref="T:ACBr.Net.Core.Logging.IACBrLog" />
 #if !NETSTANDARD2_0
+
     [ToolboxBitmap(typeof(ACBrIntegrador), "ACBr.Net.Integrador.ACBrIntegrador")]
 #endif
 
@@ -313,7 +315,7 @@ namespace ACBr.Net.Integrador
                 GerarNumeroSessao();
                 Parametros.InsertParametro(0, "numeroSessao", NumeroSessao.ToString());
             }
-            
+
             envio.Identificador.Valor = NumeroSessao.ToString();
 
             envio.Componente.Metodo.Parametros.AddRange(Parametros);
