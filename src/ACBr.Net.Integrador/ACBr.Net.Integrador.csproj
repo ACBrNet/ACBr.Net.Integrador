@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>net452;netstandard2.0</TargetFrameworks>
-	<AssemblyName>ACBr.Net.Integrador</AssemblyName>
+    <AssemblyName>ACBr.Net.Integrador</AssemblyName>
     <RootNamespace>ACBr.Net.Integrador</RootNamespace>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>acbr.net.snk</AssemblyOriginatorKeyFile>
@@ -13,16 +13,20 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageIconUrl>https://avatars2.githubusercontent.com/u/7342977?v=3&amp;amp;s=200</PackageIconUrl>
     <RepositoryUrl>https://github.com/ACBrNet/ACBr.Net.Integrador</RepositoryUrl>
-    <RepositoryType>Github</RepositoryType>
+    <RepositoryType>git</RepositoryType>
     <PackageTags>ACBr ACBr.Net Automação Comercial</PackageTags>
     <Description>Biblioteca para utilização do Integrador Fiscal do Ceára</Description>
     <NeutralLanguage>pt-BR</NeutralLanguage>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <AssemblyVersion>1.2.0.6</AssemblyVersion>
-    <FileVersion>1.2.0.6</FileVersion>
-    <Version>1.2.0.6</Version>
+    <AssemblyVersion>1.2.0.8</AssemblyVersion>
+    <FileVersion>1.2.0.8</FileVersion>
+    <Version>1.2.0.8</Version>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
-  
+
   <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard2.0'">
     <DefineConstants>NETCORE;NETSTANDARD;NETSTANDARD2_0</DefineConstants>
   </PropertyGroup>
@@ -52,7 +56,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ACBr.Net.DFe.Core" Version="1.2.7.1" />
+    <PackageReference Include="ACBr.Net.DFe.Core" Version="1.2.8" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
