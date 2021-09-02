@@ -6,7 +6,7 @@
     <RootNamespace>ACBr.Net.Integrador</RootNamespace>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>acbr.net.snk</AssemblyOriginatorKeyFile>
-    <Copyright>Copyright © Grupo ACBr.Net 2014 - 2020</Copyright>
+    <Copyright>Copyright © Grupo ACBr.Net 2014 - 2021</Copyright>
     <Company>Grupo ACBr.Net</Company>
     <Authors>Rafael Dias</Authors>
     <PackageProjectUrl>https://acbrnet.github.io</PackageProjectUrl>
@@ -20,7 +20,7 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <AssemblyVersion>1.2.1.0</AssemblyVersion>
     <FileVersion>1.2.1.0</FileVersion>
-    <Version>1.2.1.1</Version>
+    <Version>1.2.1.2</Version>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <DebugType>embedded</DebugType>
